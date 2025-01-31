@@ -31,10 +31,11 @@ export const verifyAndRefreshToken = (server: FastifyInstance) => {
       const Checked = user?.Checked
       const Email = user?.Email
 
-      return res.send({ accessToken: newAccessToken, Name, LastName, Checked, Email })
+      return res.send({ accessToken: newAccessToken, Name, LastName, Checked, Email, refreshToken })
 
     } catch (error) {
-      return res.status(401).send({ message: 'Error to verify or refresh token: ', error})
+      console.log("oi")
+      return res.send({ status: 401, message: 'Error to verify or refresh token: ', error})
     }
   })
 }

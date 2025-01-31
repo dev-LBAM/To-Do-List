@@ -1,21 +1,55 @@
-import React, { useState } from 'react';
-import '../../styles/check-in.css';
-import axios from 'axios';
-import { Navigate, useLocation } from 'react-router-dom';
+import React, { useEffect, useState } from 'react'
+import '../../styles/check-in.css'
+import axios from 'axios'
+import { Navigate, useLocation } from 'react-router-dom'
 import {useRef} from 'react'
 
 const CheckEmail = () => {
-  
-  // Check Email states
-  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const location = useLocation();
-  const { email } = location.state || {};
 
-  const [checkCode, setCheckCode] = useState('');
-  const [redirect, setRedirect] = useState(false);
+
+  // Check Email states
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const location = useLocation()
+  const { email } = location.state || {}
+
+  const [checkCode, setCheckCode] = useState('')
+  const [redirect, setRedirect] = useState(false)
+  const [redirectApp, setRedirectApp] = useState(false)
   const [messageColor, setMessageColor] = useState('')
   const [message, setMessage] = useState('')
+  const [name, setName] = useState('')
+  const [authToken, setAuthToken] = useState('')
   //
+
+  // Function to verify if user is logged
+  const verifyToken = async () => {
+    try {
+    const response = await axios.get('http://localhost:3333/auth/verify-token', { withCredentials: true })
+    const check = response.data.Checked
+    const NameData = response.data.Name
+    const LastNameData = response.data.LastName
+    setAuthToken(response.data.accessToken)
+    setName(`${NameData} ${LastNameData}`)
+    
+    if(check === true)
+    {
+      setRedirectApp(true)
+    }
+
+    } catch (error) {
+    window.location.href="/"
+    console.log(error)
+    }
+}
+
+useEffect(() => {
+      verifyToken()
+}, [])
+//
+
+if(redirectApp === true){
+  return <Navigate to='/todolist' state={{ authToken, name}} />
+}
 
   // Function to check email code
   const submit = async (e: React.FormEvent) => {

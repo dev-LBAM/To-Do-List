@@ -8,6 +8,21 @@ const ToDoList = () => {
     const location = useLocation()
     const { authToken, name} = location.state || {}
 
+    // Function to verify if user is logged
+    const verifyToken = async () => {
+        try {
+        await axios.get('http://localhost:3333/auth/verify-token', { withCredentials: true })
+        } catch (error) {
+        window.location.href="/"
+        console.log(error)
+        }
+    }
+
+    useEffect(() => {
+        verifyToken()
+    }, [])
+    //
+
 //LIST SCHEMA
 
     //List States
