@@ -178,10 +178,9 @@ const Register: React.FC<RegisterProps> = ({ showLoginForm }) => {
             <option value="" disabled selected>
               Select a gender
             </option>
-            <option value="">Selecione</option>
-            <option value="masculino">Masculino</option>
-            <option value="feminino">Feminino</option>
-            <option value="outro">Outro</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
           </select>
         </div>
         {message && <p className="message-error" style={{ color: messageColor }}>{message}</p>}
