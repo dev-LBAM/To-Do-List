@@ -34,7 +34,6 @@ export const verifyAndRefreshToken = (server: FastifyInstance) => {
       return res.send({ accessToken: newAccessToken, Name, LastName, Checked, Email, refreshToken })
 
     } catch (error) {
-      console.log("oi")
       return res.send({ status: 401, message: 'Error to verify or refresh token: ', error})
     }
   })
