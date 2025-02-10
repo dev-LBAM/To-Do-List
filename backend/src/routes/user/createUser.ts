@@ -5,7 +5,7 @@ import nodemailer from 'nodemailer'
 import jwt from 'jsonwebtoken'
 
 export const createUser = (server: FastifyInstance) =>{
-    server.post("/createuser", async (req: FastifyRequest, res: FastifyReply) => {
+    server.post("/user/create", async (req: FastifyRequest, res: FastifyReply) => {
         const { Name, LastName, Email, Password, Age, Gender }:
         {Name: string, LastName: string, Email: string, Password: string, Age: number, Gender: string} = req.body as any
         try {

@@ -5,7 +5,7 @@ import prisma from '../../../../prisma/prismaClient';
 interface CustomFastifyRequest extends FastifyRequest { userId?: string; }
 
 export const getLists = (server: FastifyInstance) => {
-    server.get('/lists', { preHandler: auth }, async (req: CustomFastifyRequest, res: FastifyReply) => {
+    server.get('/list/find', { preHandler: auth }, async (req: CustomFastifyRequest, res: FastifyReply) => {
         try {
             const findList = await prisma.list.findMany({
                 where: {

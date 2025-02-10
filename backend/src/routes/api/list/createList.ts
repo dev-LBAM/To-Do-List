@@ -5,7 +5,7 @@ import prisma from '../../../../prisma/prismaClient';
 interface CustomFastifyRequest extends FastifyRequest { userId?: string; }
 
 export const createList = (server: FastifyInstance) => {
-    server.post('/createlist', { preHandler: auth }, async (req: CustomFastifyRequest, res: FastifyReply) => {
+    server.post('/list/create', { preHandler: auth }, async (req: CustomFastifyRequest, res: FastifyReply) => {
         try {
           const { titleList } = req.body as any;
 

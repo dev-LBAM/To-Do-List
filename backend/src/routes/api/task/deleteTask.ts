@@ -6,7 +6,7 @@ import prisma from '../../../../prisma/prismaClient'
 interface CustomFastifyRequest extends FastifyRequest { userId?: string }
 
 export const deleteTask = (server: FastifyInstance) => {
-    server.delete('/tasks/:taskId/delete', { preHandler: auth }, async (req: CustomFastifyRequest, res: FastifyReply) => {
+    server.delete('/task/delete/:taskId', { preHandler: auth }, async (req: CustomFastifyRequest, res: FastifyReply) => {
         try {
             const { taskId } = req.params as any
 

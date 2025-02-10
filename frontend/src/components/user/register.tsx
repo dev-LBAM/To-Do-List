@@ -42,7 +42,7 @@ const Register: React.FC<RegisterProps> = ({ showLoginForm }) => {
     }
 
     try {
-      const response = await axios.post('http://localhost:3333/createuser', {
+      const response = await axios.post('http://localhost:3333/user/create', {
         Name: name,
         LastName: lastName,
         Email: email,

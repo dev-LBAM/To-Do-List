@@ -1,7 +1,7 @@
 import { FastifyInstance, FastifyReply } from 'fastify'
 
 export const logout = (server: FastifyInstance) => {
-  server.post('/logout', (request, reply) => {
+  server.post('/user/logout', (request, reply) => {
     try {
       // Clear refresh token of cookies
       reply.clearCookie('refreshToken', {

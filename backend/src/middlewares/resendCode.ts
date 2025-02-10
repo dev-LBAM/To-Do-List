@@ -4,7 +4,7 @@ import prisma from '../../prisma/prismaClient'
 import { randomUUID } from 'node:crypto'
 
 export const resendCode = (server: FastifyInstance) => {
-  server.post("/resendCode", async (req: FastifyRequest, res: FastifyReply) => {
+  server.post("/auth/resendCode", async (req: FastifyRequest, res: FastifyReply) => {
     try {
       interface ResendCodeBody {
         email: string

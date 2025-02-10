@@ -5,7 +5,7 @@ import jwt from 'jsonwebtoken'
 interface CustomFastifyRequest extends FastifyRequest { userId?: string }
 
 export const authEmail = (server: FastifyInstance) => {
-    server.post('/authEmail/:idcode', async (req: CustomFastifyRequest, res: FastifyReply) => {
+    server.post('/auth/email/:idcode', async (req: CustomFastifyRequest, res: FastifyReply) => {
         try {
             const { idcode }: {idcode: string} = req.params as any
             const findList = await prisma.userform.findFirst({

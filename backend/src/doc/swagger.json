@@ -1,0 +1,51 @@
+{
+    "info": {
+        "title": "API of ToDoList",
+        "description": "This API is your personal todolist",
+        "termsOfService": "http://localhost:3000/terms",
+        "contact":{
+            "email": "lucasbatist.a@hotmail.com"
+        },
+        "version": "1.0.0"
+    },
+
+    "servers":[
+    {
+        "url": "http://localhost:3000",
+        "description": "API of test"
+    }],
+    
+    "paths": {
+        "/user/create":{
+            "post":{
+                "summary": "Register User",
+                "description": "This route register a user",
+                "tags": ["USER"],
+                "requestBody":{
+                    "content":{
+                        "application/json":{
+                            "schema":{
+                                "$ref": "#/components/schemas/User"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas":{
+            "User":{
+                "type": "object",
+                "properties":{
+                    "Name": {"type": "string"},
+                    "LastName": {"type": "string"},
+                    "Email": {"type": "string"}, 
+                    "Password": {"type": "string"},
+                    "Age": {"type": "number"}, 
+                    "Gender": {"type": "string", "enum": ["male", "female", "other"]}
+                }
+            }
+        }
+    }
+}

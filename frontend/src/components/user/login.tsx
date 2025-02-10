@@ -69,7 +69,7 @@ const Login = () => {
 
     try {
       const response = await axios.post(
-        'http://localhost:3333/finduser',
+        'http://localhost:3333/user/login',
         { Email: email, Password: password },
         { withCredentials: true }
       )

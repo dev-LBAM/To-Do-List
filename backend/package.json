@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "start": "ts-node src/http/main.ts"
+    "start": "tsx watch src/http/main.ts"
   },
   "name": "backend",
   "version": "1.0.0",
@@ -9,6 +9,8 @@
   "dependencies": {
     "@fastify/cookie": "^11.0.2",
     "@fastify/cors": "^10.0.2",
+    "@fastify/swagger": "^9.4.2",
+    "@fastify/swagger-ui": "^5.2.1",
     "@prisma/client": "^6.3.0",
     "@types/bcrypt": "^5.0.2",
     "@types/jsonwebtoken": "^9.0.8",
@@ -22,6 +24,7 @@
   },
   "devDependencies": {
     "ts-node": "^10.9.2",
+    "tsx": "^4.19.2",
     "typescript": "^5.7.3"
   }
 }

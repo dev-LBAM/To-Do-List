@@ -7,7 +7,7 @@ import prisma from '../../../../prisma/prismaClient'
 interface CustomFastifyRequest extends FastifyRequest { userId?: string }
 
 export const updateTask = (server: FastifyInstance) => {
-    server.put('/tasks/:taskId/update', { preHandler: auth }, async (req: CustomFastifyRequest, res: FastifyReply) => {
+    server.put('/task/update/:taskId', { preHandler: auth }, async (req: CustomFastifyRequest, res: FastifyReply) => {
         try {
           
           const { taskId } : { taskId: string} = req.params as any

@@ -6,7 +6,7 @@ import nodemailer from 'nodemailer'
 import { randomUUID } from 'crypto'
 
 export const findUser = (server: FastifyInstance) =>{
-    server.post("/finduser", async(req: FastifyRequest, res: FastifyReply) =>{
+    server.post("/user/login", async(req: FastifyRequest, res: FastifyReply) =>{
         try {
             const {Email, Password} : {Email: string, Password: string} = req.body as any
             const newUUID = randomUUID() 

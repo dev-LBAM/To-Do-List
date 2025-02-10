@@ -5,7 +5,7 @@ import prisma from '../../../../prisma/prismaClient';
 interface CustomFastifyRequest extends FastifyRequest { userId?: string; }
 
 export const deleteList = (server: FastifyInstance) => {
-    server.delete('/lists/:listId/delete', { preHandler: auth }, async (req: CustomFastifyRequest, res: FastifyReply) => {
+    server.delete('/list/delete/:listId', { preHandler: auth }, async (req: CustomFastifyRequest, res: FastifyReply) => {
         try {
             console.log("chegou na rota de deletar lista")
             

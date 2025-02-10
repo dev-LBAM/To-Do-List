@@ -47,7 +47,7 @@ const ToDoList = () => {
     const foundLists = useCallback(async () => {
         setLoadingList(true)
         try {
-            const response = await axios.get('http://localhost:3333/lists', {
+            const response = await axios.get('http://localhost:3333/list', {
                 headers: { Authorization: `${authToken}` },
             })
             setLists(response.data.Lista)
@@ -75,7 +75,7 @@ const ToDoList = () => {
     // Function to logout user
     const logoutUser = useCallback(async () => {
         try {
-          const response = await axios.post('http://localhost:3333/logout',{},
+          const response = await axios.post('http://localhost:3333/user/logout',{},
             {
                 withCredentials: true
             }
@@ -106,7 +106,7 @@ const ToDoList = () => {
     const createList = async (event: React.FormEvent) => {
         event.preventDefault()
         try {
-            const response = await axios.post('http://localhost:3333/createlist',
+            const response = await axios.post('http://localhost:3333/list/create',
                 { titleList },
                 { headers: { Authorization: `${authToken}` } }
             )
@@ -141,7 +141,7 @@ const ToDoList = () => {
     const editTitleList = async (index: number) => {
         try {
             const response = await axios.put(
-                `http://localhost:3333/lists/${lists[index].id}/update`,
+                `http://localhost:3333/list/update/${lists[index].id}`,
                 { newTitle },
                 { headers: { Authorization: `${authToken}` } }
             )
@@ -165,7 +165,7 @@ const ToDoList = () => {
         try {
 
             await axios.delete(
-                `http://localhost:3333/lists/${lists[index].id}/delete`,
+                `http://localhost:3333/list/delete/${lists[index].id}`,
                 { headers: { Authorization: `${authToken}` } }
             )
             const updatedLists = lists.filter((_, i) => i !== index) //Filter for update the specific list
@@ -216,7 +216,7 @@ const ToDoList = () => {
     const foundTasks = async (listId: string) => {
         setLoadingTask(true)
         try {
-            const response = await axios.get(`http://localhost:3333/lists/${listId}/tasks`, 
+            const response = await axios.get(`http://localhost:3333/task/find/${listId}`, 
                 { headers: { Authorization: `${authToken}` } }
             )
 
@@ -233,7 +233,7 @@ const ToDoList = () => {
     // Function to add task in the list
     const addTask = async(listId: string | React.FormEvent) => {
         try {
-            const response = await axios.post(`http://localhost:3333/lists/${listId}/addtask`,
+            const response = await axios.post(`http://localhost:3333/task/add/${listId}`,
                 { descriptionCreateTask },
                 { headers: { Authorization: `${authToken}` }}
             )
@@ -247,7 +247,7 @@ const ToDoList = () => {
     // Function to delete a task
     const deleteTask = async (taskId: string) => {
         try {
-            await axios.delete(`http://localhost:3333/tasks/${taskId}/delete`, {
+            await axios.delete(`http://localhost:3333/task/delete/${taskId}`, {
                 headers: { Authorization: `${authToken}` },
             })
             setTasks(tasks.filter((task) => task.id !== taskId)) // Remove a tarefa da lista localmente
@@ -281,7 +281,7 @@ const ToDoList = () => {
         try {
             console.log(tasks[index].id)
             const response = await axios.put(
-                `http://localhost:3333/tasks/${tasks[index].id}/update`,
+                `http://localhost:3333/task/update/${tasks[index].id}`,
                 { descriptionTask },
                 { headers: { Authorization: `${authToken}` } }
             )

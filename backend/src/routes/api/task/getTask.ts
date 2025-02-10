@@ -6,7 +6,7 @@ import prisma from '../../../../prisma/prismaClient'
 interface CustomFastifyRequest extends FastifyRequest { userId?: string }
 
 export const getTask = (server: FastifyInstance) => {
-    server.get('/lists/:listId/tasks', { preHandler: auth }, async (req: CustomFastifyRequest, res: FastifyReply) => {
+    server.get('/task/find/:listId', { preHandler: auth }, async (req: CustomFastifyRequest, res: FastifyReply) => {
         try {
             const { listId } : { listId: string} = req.params as any
 

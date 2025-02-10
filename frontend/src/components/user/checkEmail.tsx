@@ -56,7 +56,7 @@ if(redirectApp === true){
     e.preventDefault();
 
     try {
-      const response = await axios.post(`http://localhost:3333/authEmail/${checkCode}`);
+      const response = await axios.post(`http://localhost:3333/auth/email/${checkCode}`);
       if (response.data.status === 200) {
         setRedirect(true);
       } else {
@@ -75,7 +75,7 @@ if(redirectApp === true){
   // Function to send check code again
   const sendCodeAgain = async () => {
     try {
-      const response = await axios.post('http://localhost:3333/resendCode', { email });
+      const response = await axios.post('http://localhost:3333/auth/resendCode', { email });
       if (response.data.status === 200) {
         setMessage('Code resend to your email with sucess!')
         setMessageColor('green')
@@ -92,7 +92,7 @@ if(redirectApp === true){
 
   const logoutUser = async () => {
     try {
-      const response = await axios.post('http://localhost:3333/logout', {}, { withCredentials: true });
+      const response = await axios.post('http://localhost:3333/user/logout', {}, { withCredentials: true });
       if (response.data.logout) {
         window.location.href = "/";
       }

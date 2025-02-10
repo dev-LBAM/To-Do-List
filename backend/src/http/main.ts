@@ -1,6 +1,10 @@
-import { fastify, FastifyReply, FastifyRequest } from 'fastify'
+import { fastify } from 'fastify'
 import fastifyCookie from '@fastify/cookie'
 import cors from '@fastify/cors'
+
+import { fastifySwagger } from '@fastify/swagger'
+import swaggerDocument from '../doc/swagger.json'
+import swaggerUi from '@fastify/swagger-ui'
 
 import createList from '../routes/api/list/createList'
 import getLists from '../routes/api/list/getList'
@@ -29,6 +33,14 @@ server.register(cors, {
     credentials: true, 
 })
 
+server.register(fastifySwagger, {
+    openapi: swaggerDocument
+})
+
+server.register(swaggerUi, {
+    routePrefix: "/docs",
+    staticCSP: true
+})
 
 createUser(server)
 findUser(server)
@@ -48,12 +60,15 @@ resendCode(server)
 
 verifyAndRefreshToken(server)
 
-server.listen({
-    port: parseInt(process.env.PORT ?? '3333', 10)
-}, (err, address) => {
-    if (err) {
-        console.error(err)
-        process.exit(1)
+const start = async () => {
+    try {
+      await server.listen({ port: 3000 })
+      console.log("🚀 Servidor rodando em http://localhost:3000")
+      console.log("📄 Documentação disponível em http://localhost:3000/docs")
+    } catch (err) {
+      server.log.error(err)
+      process.exit(1)
     }
-    console.log(`Server listening at ${address}`)
-})
+  }
+  
+  start()
