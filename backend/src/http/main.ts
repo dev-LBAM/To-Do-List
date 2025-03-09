@@ -29,7 +29,7 @@ const server = fastify()
 
 server.register(fastifyCookie)
 server.register(cors, {
-    origin: 'http://localhost:3000', 
+    origin: 'http://localhost:3001', 
     credentials: true, 
 })
 
@@ -62,9 +62,9 @@ verifyAndRefreshToken(server)
 
 const start = async () => {
     try {
-      await server.listen({ port: 3000 })
-      console.log("🚀 Servidor rodando em http://localhost:3000")
-      console.log("📄 Documentação disponível em http://localhost:3000/docs")
+      await server.listen({ port: 3333 })
+      console.log("🚀 Servidor rodando em http://localhost:3333")
+      console.log("📄 Documentação disponível em http://localhost:3333/docs")
     } catch (err) {
       server.log.error(err)
       process.exit(1)
